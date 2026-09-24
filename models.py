@@ -16,11 +16,19 @@ class DetectionEvent(Base):
 
     __tablename__ = "detection_events"
 
+    # =========================================================
+    # PRIMARY KEY
+    # =========================================================
+
     id = Column(
         Integer,
         primary_key=True,
         index=True
     )
+
+    # =========================================================
+    # VIDEO INFORMATION
+    # =========================================================
 
     video_name = Column(
         String(255),
@@ -28,10 +36,18 @@ class DetectionEvent(Base):
         index=True
     )
 
+    # =========================================================
+    # EVENT INFORMATION
+    # =========================================================
+
     event_type = Column(
         String(100),
         nullable=False
     )
+
+    # =========================================================
+    # DETECTION INFORMATION
+    # =========================================================
 
     class_name = Column(
         String(100),
@@ -44,6 +60,10 @@ class DetectionEvent(Base):
         nullable=False
     )
 
+    # =========================================================
+    # FRAME / TIMESTAMP INFORMATION
+    # =========================================================
+
     timestamp = Column(
         DateTime,
         nullable=False
@@ -54,13 +74,41 @@ class DetectionEvent(Base):
         nullable=True
     )
 
+    # =========================================================
+    # ORIGINAL JSON DATA
+    # =========================================================
+
     json_data = Column(
         JSON,
         nullable=False
     )
 
+    # =========================================================
+    # RECORD CREATION TIME
+    # =========================================================
+
     created_at = Column(
         DateTime,
         default=datetime.utcnow,
         nullable=False
+    )
+
+    # =========================================================
+    # MONGODB SYNCHRONIZATION STATUS
+    # =========================================================
+
+    sync_status = Column(
+        String(20),
+        default="PENDING",
+        nullable=False,
+        index=True
+    )
+
+    # =========================================================
+    # SUCCESSFUL MONGODB SYNC TIME
+    # =========================================================
+
+    synced_at = Column(
+        DateTime,
+        nullable=True
     )

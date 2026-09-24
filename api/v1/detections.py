@@ -2,12 +2,23 @@ from datetime import datetime
 from decimal import Decimal
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+import json
+
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    status
+)
+
 from pydantic import BaseModel, Field
+
 from sqlalchemy.orm import Session
 
 from database import get_db
+
 from models import DetectionEvent
+
 from logger_config import logger
 
 
@@ -16,7 +27,9 @@ from logger_config import logger
 # =========================================================
 
 router = APIRouter(
+
     prefix="/api/v1/detections",
+
     tags=["Detections"]
 )
 
@@ -26,6 +39,7 @@ router = APIRouter(
 # =========================================================
 
 class DetectionItem(BaseModel):
+
     class_name: str = Field(
         ...,
         min_length=1,
@@ -40,6 +54,7 @@ class DetectionItem(BaseModel):
 
 
 class DetectionRequest(BaseModel):
+
     video_name: str = Field(
         ...,
         min_length=1,
@@ -66,22 +81,38 @@ class DetectionRequest(BaseModel):
 
 
 class DetectionResponse(BaseModel):
+
     message: str
+
     event_ids: List[int]
 
 
 class DetectionEventResponse(BaseModel):
+
     id: int
+
     video_name: str
+
     event_type: str
+
     class_name: str
+
     confidence: float
+
     timestamp: datetime
+
     frame_number: Optional[int]
+
     json_data: dict
+
     created_at: datetime
 
+    sync_status: str
+
+    synced_at: Optional[datetime]
+
     class Config:
+
         from_attributes = True
 
 
@@ -97,7 +128,9 @@ def detection_test():
     )
 
     return {
-        "message": "Detection API v1 is working"
+
+        "message":
+            "Detection API v1 is working"
     }
 
 
@@ -111,19 +144,25 @@ def detection_test():
     status_code=status.HTTP_201_CREATED
 )
 def create_detection_event(
+
     detection: DetectionRequest,
+
     db: Session = Depends(get_db)
 ):
 
     logger.info(
-        "Detection event received | Video: %s | Frame: %s",
+
+        "Detection event received | "
+        "Video: %s | Frame: %s",
+
         detection.video_name,
+
         detection.frame_number
     )
 
-    # -----------------------------------------------------
-    # Validate detection list
-    # -----------------------------------------------------
+    # =====================================================
+    # VALIDATE DETECTION LIST
+    # =====================================================
 
     if not detection.detections:
 
@@ -132,34 +171,35 @@ def create_detection_event(
         )
 
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Detection list cannot be empty"
+
+            status_code=
+                status.HTTP_400_BAD_REQUEST,
+
+            detail=
+                "Detection list cannot be empty"
         )
 
     event_ids = []
 
     try:
 
-        # -------------------------------------------------
-        # Convert complete request to JSON-safe dictionary
-        # -------------------------------------------------
-        #
-        # This converts datetime into an ISO-format string.
-        #
-        complete_json = detection.json()
-        import json
+        # =================================================
+        # CONVERT REQUEST TO JSON
+        # =================================================
 
-        complete_json = json.loads(complete_json)
+        complete_json = json.loads(
+            detection.json()
+        )
 
-        # -------------------------------------------------
-        # Process every detection
-        # -------------------------------------------------
+        # =================================================
+        # PROCESS EACH DETECTION
+        # =================================================
 
         for item in detection.detections:
 
-            # ---------------------------------------------
-            # Validate class name
-            # ---------------------------------------------
+            # =============================================
+            # VALIDATE CLASS NAME
+            # =============================================
 
             if not item.class_name.strip():
 
@@ -168,13 +208,17 @@ def create_detection_event(
                 )
 
                 raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="class_name cannot be empty"
+
+                    status_code=
+                        status.HTTP_400_BAD_REQUEST,
+
+                    detail=
+                        "class_name cannot be empty"
                 )
 
-            # ---------------------------------------------
-            # Validate confidence
-            # ---------------------------------------------
+            # =============================================
+            # VALIDATE CONFIDENCE
+            # =============================================
 
             if not 0.0 <= item.confidence <= 1.0:
 
@@ -183,60 +227,90 @@ def create_detection_event(
                 )
 
                 raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="confidence must be between 0 and 1"
+
+                    status_code=
+                        status.HTTP_400_BAD_REQUEST,
+
+                    detail=
+                        "confidence must be between 0 and 1"
                 )
 
-            # ---------------------------------------------
-            # Create database event
-            # ---------------------------------------------
+            # =============================================
+            # CREATE DATABASE EVENT
+            # =============================================
 
             event = DetectionEvent(
 
-                video_name=detection.video_name,
+                video_name=
+                    detection.video_name,
 
-                event_type=detection.event_type,
+                event_type=
+                    detection.event_type,
 
-                class_name=item.class_name,
+                class_name=
+                    item.class_name,
 
-                confidence=Decimal(
-                    str(item.confidence)
-                ),
+                confidence=
+                    Decimal(
+                        str(item.confidence)
+                    ),
 
-                timestamp=detection.timestamp,
+                timestamp=
+                    detection.timestamp,
 
-                frame_number=detection.frame_number,
+                frame_number=
+                    detection.frame_number,
 
-                json_data=complete_json
+                json_data=
+                    complete_json,
+
+                # New records are waiting
+                # for MongoDB synchronization.
+                sync_status=
+                    "PENDING",
+
+                synced_at=
+                    None
             )
 
             db.add(event)
 
             db.flush()
 
-            event_ids.append(event.id)
+            event_ids.append(
+                event.id
+            )
 
-        # -------------------------------------------------
-        # Commit database transaction
-        # -------------------------------------------------
+        # =================================================
+        # COMMIT
+        # =================================================
 
         db.commit()
 
         logger.info(
-            "Successfully stored %d detection events | Video: %s | Frame: %s",
+
+            "Successfully stored %d "
+            "detection events | Video: %s | Frame: %s",
+
             len(event_ids),
+
             detection.video_name,
+
             detection.frame_number
         )
 
         return {
-            "message": "Detection events stored successfully",
-            "event_ids": event_ids
+
+            "message":
+                "Detection events stored successfully",
+
+            "event_ids":
+                event_ids
         }
 
-    # -----------------------------------------------------
-    # Validation error
-    # -----------------------------------------------------
+    # =====================================================
+    # VALIDATION ERROR
+    # =====================================================
 
     except HTTPException:
 
@@ -244,22 +318,28 @@ def create_detection_event(
 
         raise
 
-    # -----------------------------------------------------
-    # Database / unexpected error
-    # -----------------------------------------------------
+    # =====================================================
+    # DATABASE / UNEXPECTED ERROR
+    # =====================================================
 
     except Exception as e:
 
         db.rollback()
 
         logger.error(
+
             "Failed to store detection event: %s",
+
             str(e)
         )
 
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to store detection event"
+
+            status_code=
+                status.HTTP_500_INTERNAL_SERVER_ERROR,
+
+            detail=
+                "Failed to store detection event"
         )
 
 
@@ -272,6 +352,7 @@ def create_detection_event(
     response_model=List[DetectionEventResponse]
 )
 def get_detection_events(
+
     db: Session = Depends(get_db)
 ):
 
@@ -280,8 +361,15 @@ def get_detection_events(
     )
 
     events = (
-        db.query(DetectionEvent)
-        .order_by(DetectionEvent.id.desc())
+
+        db.query(
+            DetectionEvent
+        )
+
+        .order_by(
+            DetectionEvent.id.desc()
+        )
+
         .all()
     )
 
@@ -297,33 +385,48 @@ def get_detection_events(
     response_model=DetectionEventResponse
 )
 def get_detection_event(
+
     event_id: int,
+
     db: Session = Depends(get_db)
 ):
 
     logger.info(
+
         "Fetching detection event ID: %s",
+
         event_id
     )
 
     event = (
-        db.query(DetectionEvent)
+
+        db.query(
+            DetectionEvent
+        )
+
         .filter(
             DetectionEvent.id == event_id
         )
+
         .first()
     )
 
     if event is None:
 
         logger.warning(
+
             "Detection event %s not found",
+
             event_id
         )
 
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Detection event not found"
+
+            status_code=
+                status.HTTP_404_NOT_FOUND,
+
+            detail=
+                "Detection event not found"
         )
 
     return event

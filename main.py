@@ -1,16 +1,33 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import Base, engine
+from database import (
+    Base,
+    engine,
+    update_detection_events_schema
+)
+
 from logger_config import logger
-from api.v1.detections import router as detection_router
+
+from api.v1.detections import (
+    router as detection_router
+)
 
 
 # =========================================================
 # CREATE DATABASE TABLES
 # =========================================================
 
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(
+    bind=engine
+)
+
+
+# =========================================================
+# UPDATE DATABASE SCHEMA
+# =========================================================
+
+update_detection_events_schema()
 
 
 # =========================================================
@@ -18,14 +35,19 @@ Base.metadata.create_all(bind=engine)
 # =========================================================
 
 app = FastAPI(
+
     title="DeepStream Detection API",
+
     description=(
-        "FastAPI backend for receiving AI detection results "
-        "from NVIDIA DeepStream and storing validated events "
+        "FastAPI backend for receiving AI detection "
+        "results and storing validated detection events "
         "in PostgreSQL."
     ),
-    version="1.0.0",
+
+    version="2.0.0",
+
     docs_url="/docs",
+
     redoc_url="/redoc"
 )
 
@@ -35,6 +57,7 @@ app = FastAPI(
 # =========================================================
 
 app.add_middleware(
+
     CORSMiddleware,
 
     allow_origins=["*"],
@@ -68,6 +91,13 @@ def root():
     )
 
     return {
-        "message": "DeepStream Detection API is running",
-        "version": "1.0.0"
+
+        "message":
+            "DeepStream Detection API is running",
+
+        "version":
+            "2.0.0",
+
+        "architecture":
+            "FastAPI → PostgreSQL → Django → MongoDB"
     }
