@@ -112,3 +112,14 @@ class DetectionEvent(Base):
         DateTime,
         nullable=True
     )
+
+    # =========================================================
+    # V2 DUPLICATE PROTECTION
+    # =========================================================
+
+    event_hash = Column(
+        String(64),
+        nullable=False,
+        unique=True,
+        index=True
+    )

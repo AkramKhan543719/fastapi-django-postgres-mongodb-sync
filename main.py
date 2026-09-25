@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import (
@@ -11,6 +12,10 @@ from logger_config import logger
 
 from api.v1.detections import (
     router as detection_router
+)
+
+from api.v2.activities import (
+    router as activity_router
 )
 
 
@@ -36,19 +41,23 @@ update_detection_events_schema()
 
 app = FastAPI(
 
-    title="DeepStream Detection API",
+    title =
+        "DeepStream Detection API",
 
-    description=(
-        "FastAPI backend for receiving AI detection "
-        "results and storing validated detection events "
-        "in PostgreSQL."
+    description = (
+        "FastAPI backend for AI detection "
+        "and V2 activity analysis."
     ),
 
-    version="2.0.0",
+    version =
+        "2.0.0",
 
-    docs_url="/docs",
+    docs_url =
+        "/docs",
 
-    redoc_url="/redoc"
+    redoc_url =
+        "/redoc"
+
 )
 
 
@@ -60,13 +69,14 @@ app.add_middleware(
 
     CORSMiddleware,
 
-    allow_origins=["*"],
+    allow_origins = ["*"],
 
-    allow_credentials=True,
+    allow_credentials = True,
 
-    allow_methods=["*"],
+    allow_methods = ["*"],
 
-    allow_headers=["*"]
+    allow_headers = ["*"]
+
 )
 
 
@@ -76,6 +86,15 @@ app.add_middleware(
 
 app.include_router(
     detection_router
+)
+
+
+# =========================================================
+# API VERSION 2
+# =========================================================
+
+app.include_router(
+    activity_router
 )
 
 
@@ -99,5 +118,16 @@ def root():
             "2.0.0",
 
         "architecture":
-            "FastAPI → PostgreSQL → Django → MongoDB"
+            "FastAPI → PostgreSQL → Django → MongoDB",
+
+        "apis": {
+
+            "v1":
+                "/api/v1/detections",
+
+            "v2":
+                "/api/v2/activity-events"
+
+        }
+
     }
