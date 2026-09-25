@@ -1410,6 +1410,7 @@ The system therefore converts raw video observations into structured, time-based
 ## 👨‍💻 Author
 
 **Pathan Mohammed Akram Khan**
+
 B.Tech — Computer Science & Engineering (Artificial Intelligence & Machine Learning)
 Alliance University, Bangalore, India
 
