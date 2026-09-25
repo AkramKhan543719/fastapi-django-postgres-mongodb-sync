@@ -1,10 +1,12 @@
 {
-    "video_name": "video4.mp4",
-    "model_name": "yolo11n-pose.pt",
-    "object_model": "yolo11n.pt",
-    "fps": 29.97,
-    "total_frames": 1739,
-    "duration_seconds": 58.025,
+    "video_info": {
+        "video_name": "video4.mp4",
+        "model_name": "yolo11n-pose.pt",
+        "object_model": "yolo11n.pt",
+        "fps": 29.97,
+        "total_frames": 1739,
+        "duration_seconds": 58.025
+    },
     "summary": {
         "total_unique_persons": 15,
         "total_activity_events": 58,
@@ -22,6 +24,834 @@
             "bird": 1
         }
     },
+    "persons": [
+        {
+            "person_id": 81,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 90,
+                    "end_frame": 111,
+                    "start_time": "00:00:03",
+                    "end_time": "00:00:03",
+                    "duration_seconds": 0.701,
+                    "confidence": 0.8299,
+                    "total_movement_pixels": 56.608
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 114,
+                    "end_frame": 126,
+                    "start_time": "00:00:03",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.4,
+                    "confidence": 0.7789,
+                    "total_movement_pixels": 104.199
+                }
+            ]
+        },
+        {
+            "person_id": 82,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 90,
+                    "end_frame": 117,
+                    "start_time": "00:00:03",
+                    "end_time": "00:00:03",
+                    "duration_seconds": 0.901,
+                    "confidence": 0.8845,
+                    "total_movement_pixels": 58.691
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 120,
+                    "end_frame": 126,
+                    "start_time": "00:00:04",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.2,
+                    "confidence": 0.8514,
+                    "total_movement_pixels": 52.317
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 129,
+                    "end_frame": 132,
+                    "start_time": "00:00:04",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.5542,
+                    "total_movement_pixels": 19.935
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 135,
+                    "end_frame": 135,
+                    "start_time": "00:00:04",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.8478,
+                    "total_movement_pixels": 16.505
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 138,
+                    "end_frame": 138,
+                    "start_time": "00:00:04",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.8641,
+                    "total_movement_pixels": 10.635
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 141,
+                    "end_frame": 141,
+                    "start_time": "00:00:04",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.7676,
+                    "total_movement_pixels": 15.812
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 144,
+                    "end_frame": 144,
+                    "start_time": "00:00:04",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.7134,
+                    "total_movement_pixels": 10.627
+                }
+            ]
+        },
+        {
+            "person_id": 100,
+            "activity_timeline": [
+                {
+                    "activity": "sitting",
+                    "start_frame": 210,
+                    "end_frame": 237,
+                    "start_time": "00:00:07",
+                    "end_time": "00:00:07",
+                    "duration_seconds": 0.901,
+                    "confidence": 0.9377,
+                    "total_movement_pixels": 1.336
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 282,
+                    "end_frame": 435,
+                    "start_time": "00:00:09",
+                    "end_time": "00:00:14",
+                    "duration_seconds": 5.105,
+                    "confidence": 0.8973,
+                    "total_movement_pixels": 212.867
+                }
+            ]
+        },
+        {
+            "person_id": 105,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 573,
+                    "end_frame": 603,
+                    "start_time": "00:00:19",
+                    "end_time": "00:00:20",
+                    "duration_seconds": 1.001,
+                    "confidence": 0.7581,
+                    "total_movement_pixels": 42.905
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 606,
+                    "end_frame": 606,
+                    "start_time": "00:00:20",
+                    "end_time": "00:00:20",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.9412,
+                    "total_movement_pixels": 21.612
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 609,
+                    "end_frame": 756,
+                    "start_time": "00:00:20",
+                    "end_time": "00:00:25",
+                    "duration_seconds": 4.905,
+                    "confidence": 0.9071,
+                    "total_movement_pixels": 151.091
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 759,
+                    "end_frame": 768,
+                    "start_time": "00:00:25",
+                    "end_time": "00:00:25",
+                    "duration_seconds": 0.3,
+                    "confidence": 0.832,
+                    "total_movement_pixels": 189.628
+                }
+            ]
+        },
+        {
+            "person_id": 119,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 765,
+                    "end_frame": 765,
+                    "start_time": "00:00:25",
+                    "end_time": "00:00:25",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.7845,
+                    "total_movement_pixels": 0.0
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 768,
+                    "end_frame": 771,
+                    "start_time": "00:00:25",
+                    "end_time": "00:00:25",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.77,
+                    "total_movement_pixels": 35.831
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 774,
+                    "end_frame": 774,
+                    "start_time": "00:00:25",
+                    "end_time": "00:00:25",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.8885,
+                    "total_movement_pixels": 5.412
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 777,
+                    "end_frame": 783,
+                    "start_time": "00:00:25",
+                    "end_time": "00:00:26",
+                    "duration_seconds": 0.2,
+                    "confidence": 0.8443,
+                    "total_movement_pixels": 57.349
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 786,
+                    "end_frame": 786,
+                    "start_time": "00:00:26",
+                    "end_time": "00:00:26",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.5434,
+                    "total_movement_pixels": 10.571
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 789,
+                    "end_frame": 813,
+                    "start_time": "00:00:26",
+                    "end_time": "00:00:27",
+                    "duration_seconds": 0.801,
+                    "confidence": 0.5325,
+                    "total_movement_pixels": 64.861
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 816,
+                    "end_frame": 828,
+                    "start_time": "00:00:27",
+                    "end_time": "00:00:27",
+                    "duration_seconds": 0.4,
+                    "confidence": 0.8659,
+                    "total_movement_pixels": 25.964
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 831,
+                    "end_frame": 840,
+                    "start_time": "00:00:27",
+                    "end_time": "00:00:28",
+                    "duration_seconds": 0.3,
+                    "confidence": 0.8422,
+                    "total_movement_pixels": 82.688
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 843,
+                    "end_frame": 945,
+                    "start_time": "00:00:28",
+                    "end_time": "00:00:31",
+                    "duration_seconds": 3.403,
+                    "confidence": 0.944,
+                    "total_movement_pixels": 128.986
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 948,
+                    "end_frame": 951,
+                    "start_time": "00:00:31",
+                    "end_time": "00:00:31",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.7246,
+                    "total_movement_pixels": 60.406
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 954,
+                    "end_frame": 1098,
+                    "start_time": "00:00:31",
+                    "end_time": "00:00:36",
+                    "duration_seconds": 4.805,
+                    "confidence": 0.8322,
+                    "total_movement_pixels": 198.364
+                }
+            ]
+        },
+        {
+            "person_id": 123,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 786,
+                    "end_frame": 786,
+                    "start_time": "00:00:26",
+                    "end_time": "00:00:26",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.7263,
+                    "total_movement_pixels": 0.0
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 789,
+                    "end_frame": 807,
+                    "start_time": "00:00:26",
+                    "end_time": "00:00:26",
+                    "duration_seconds": 0.601,
+                    "confidence": 0.8313,
+                    "total_movement_pixels": 138.947
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 810,
+                    "end_frame": 810,
+                    "start_time": "00:00:27",
+                    "end_time": "00:00:27",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.4898,
+                    "total_movement_pixels": 0.341
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 813,
+                    "end_frame": 813,
+                    "start_time": "00:00:27",
+                    "end_time": "00:00:27",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.3666,
+                    "total_movement_pixels": 40.707
+                }
+            ]
+        },
+        {
+            "person_id": 118,
+            "activity_timeline": [
+                {
+                    "activity": "sitting",
+                    "start_frame": 762,
+                    "end_frame": 762,
+                    "start_time": "00:00:25",
+                    "end_time": "00:00:25",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.3667,
+                    "total_movement_pixels": 0.0
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 792,
+                    "end_frame": 792,
+                    "start_time": "00:00:26",
+                    "end_time": "00:00:26",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.732,
+                    "total_movement_pixels": 21.155
+                },
+                {
+                    "activity": "sitting",
+                    "start_frame": 795,
+                    "end_frame": 807,
+                    "start_time": "00:00:26",
+                    "end_time": "00:00:26",
+                    "duration_seconds": 0.4,
+                    "confidence": 0.7486,
+                    "total_movement_pixels": 18.815
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 810,
+                    "end_frame": 810,
+                    "start_time": "00:00:27",
+                    "end_time": "00:00:27",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.4848,
+                    "total_movement_pixels": 13.178
+                }
+            ]
+        },
+        {
+            "person_id": 155,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 1167,
+                    "end_frame": 1170,
+                    "start_time": "00:00:38",
+                    "end_time": "00:00:39",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.5023,
+                    "total_movement_pixels": 10.084
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1173,
+                    "end_frame": 1176,
+                    "start_time": "00:00:39",
+                    "end_time": "00:00:39",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.8133,
+                    "total_movement_pixels": 25.203
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1179,
+                    "end_frame": 1338,
+                    "start_time": "00:00:39",
+                    "end_time": "00:00:44",
+                    "duration_seconds": 5.305,
+                    "confidence": 0.8161,
+                    "total_movement_pixels": 213.315
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1341,
+                    "end_frame": 1341,
+                    "start_time": "00:00:44",
+                    "end_time": "00:00:44",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.8979,
+                    "total_movement_pixels": 25.671
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1344,
+                    "end_frame": 1347,
+                    "start_time": "00:00:44",
+                    "end_time": "00:00:44",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.8972,
+                    "total_movement_pixels": 10.508
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1350,
+                    "end_frame": 1353,
+                    "start_time": "00:00:45",
+                    "end_time": "00:00:45",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.8125,
+                    "total_movement_pixels": 36.179
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1356,
+                    "end_frame": 1359,
+                    "start_time": "00:00:45",
+                    "end_time": "00:00:45",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.8114,
+                    "total_movement_pixels": 5.976
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1362,
+                    "end_frame": 1362,
+                    "start_time": "00:00:45",
+                    "end_time": "00:00:45",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.8086,
+                    "total_movement_pixels": 27.809
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1365,
+                    "end_frame": 1365,
+                    "start_time": "00:00:45",
+                    "end_time": "00:00:45",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.7748,
+                    "total_movement_pixels": 4.536
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1368,
+                    "end_frame": 1368,
+                    "start_time": "00:00:45",
+                    "end_time": "00:00:45",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.8658,
+                    "total_movement_pixels": 20.074
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1371,
+                    "end_frame": 1500,
+                    "start_time": "00:00:45",
+                    "end_time": "00:00:50",
+                    "duration_seconds": 4.304,
+                    "confidence": 0.9399,
+                    "total_movement_pixels": 122.032
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1503,
+                    "end_frame": 1503,
+                    "start_time": "00:00:50",
+                    "end_time": "00:00:50",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.8281,
+                    "total_movement_pixels": 28.081
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1506,
+                    "end_frame": 1569,
+                    "start_time": "00:00:50",
+                    "end_time": "00:00:52",
+                    "duration_seconds": 2.102,
+                    "confidence": 0.8791,
+                    "total_movement_pixels": 30.883
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1572,
+                    "end_frame": 1575,
+                    "start_time": "00:00:52",
+                    "end_time": "00:00:52",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.9336,
+                    "total_movement_pixels": 90.0
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1578,
+                    "end_frame": 1668,
+                    "start_time": "00:00:52",
+                    "end_time": "00:00:55",
+                    "duration_seconds": 3.003,
+                    "confidence": 0.9349,
+                    "total_movement_pixels": 21.482
+                },
+                {
+                    "activity": "moving",
+                    "start_frame": 1671,
+                    "end_frame": 1674,
+                    "start_time": "00:00:55",
+                    "end_time": "00:00:55",
+                    "duration_seconds": 0.1,
+                    "confidence": 0.9395,
+                    "total_movement_pixels": 91.682
+                },
+                {
+                    "activity": "standing",
+                    "start_frame": 1677,
+                    "end_frame": 1737,
+                    "start_time": "00:00:55",
+                    "end_time": "00:00:57",
+                    "duration_seconds": 2.002,
+                    "confidence": 0.9171,
+                    "total_movement_pixels": 16.054
+                }
+            ]
+        },
+        {
+            "person_id": 58,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 3,
+                    "end_frame": 63,
+                    "start_time": "00:00:00",
+                    "end_time": "00:00:02",
+                    "duration_seconds": 2.002,
+                    "confidence": 0.9445,
+                    "total_movement_pixels": 10.967
+                }
+            ]
+        },
+        {
+            "person_id": 87,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 138,
+                    "end_frame": 144,
+                    "start_time": "00:00:04",
+                    "end_time": "00:00:04",
+                    "duration_seconds": 0.2,
+                    "confidence": 0.8015,
+                    "total_movement_pixels": 13.007
+                }
+            ]
+        },
+        {
+            "person_id": 101,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 441,
+                    "end_frame": 567,
+                    "start_time": "00:00:14",
+                    "end_time": "00:00:18",
+                    "duration_seconds": 4.204,
+                    "confidence": 0.8932,
+                    "total_movement_pixels": 246.713
+                }
+            ]
+        },
+        {
+            "person_id": 107,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 576,
+                    "end_frame": 603,
+                    "start_time": "00:00:19",
+                    "end_time": "00:00:20",
+                    "duration_seconds": 0.901,
+                    "confidence": 0.8255,
+                    "total_movement_pixels": 75.909
+                }
+            ]
+        },
+        {
+            "person_id": 131,
+            "activity_timeline": [
+                {
+                    "activity": "standing",
+                    "start_frame": 813,
+                    "end_frame": 813,
+                    "start_time": "00:00:27",
+                    "end_time": "00:00:27",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.6504,
+                    "total_movement_pixels": 0.0
+                }
+            ]
+        },
+        {
+            "person_id": 147,
+            "activity_timeline": [
+                {
+                    "activity": "sitting",
+                    "start_frame": 891,
+                    "end_frame": 939,
+                    "start_time": "00:00:29",
+                    "end_time": "00:00:31",
+                    "duration_seconds": 1.602,
+                    "confidence": 0.548,
+                    "total_movement_pixels": 123.552
+                }
+            ]
+        },
+        {
+            "person_id": 154,
+            "activity_timeline": [
+                {
+                    "activity": "sitting",
+                    "start_frame": 1161,
+                    "end_frame": 1161,
+                    "start_time": "00:00:38",
+                    "end_time": "00:00:38",
+                    "duration_seconds": 0.0,
+                    "confidence": 0.6673,
+                    "total_movement_pixels": 0.0
+                }
+            ]
+        }
+    ],
+    "object_events": [
+        {
+            "object_id": 86,
+            "object_type": "clock",
+            "start_frame": 123,
+            "end_frame": 135,
+            "frame_number": 135,
+            "start_time": "00:00:04",
+            "end_time": "00:00:04",
+            "duration_seconds": 0.4,
+            "confidence": 0.4317,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 93,
+            "object_type": "clock",
+            "start_frame": 156,
+            "end_frame": 183,
+            "frame_number": 183,
+            "start_time": "00:00:05",
+            "end_time": "00:00:06",
+            "duration_seconds": 0.901,
+            "confidence": 0.5122,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 108,
+            "object_type": "tie",
+            "start_frame": 576,
+            "end_frame": 582,
+            "frame_number": 582,
+            "start_time": "00:00:19",
+            "end_time": "00:00:19",
+            "duration_seconds": 0.2,
+            "confidence": 0.5171,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 144,
+            "object_type": "surfboard",
+            "start_frame": 855,
+            "end_frame": 888,
+            "frame_number": 888,
+            "start_time": "00:00:28",
+            "end_time": "00:00:29",
+            "duration_seconds": 1.101,
+            "confidence": 0.4327,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 145,
+            "object_type": "surfboard",
+            "start_frame": 858,
+            "end_frame": 873,
+            "frame_number": 873,
+            "start_time": "00:00:28",
+            "end_time": "00:00:29",
+            "duration_seconds": 0.501,
+            "confidence": 0.4868,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 146,
+            "object_type": "snowboard",
+            "start_frame": 876,
+            "end_frame": 903,
+            "frame_number": 903,
+            "start_time": "00:00:29",
+            "end_time": "00:00:30",
+            "duration_seconds": 0.901,
+            "confidence": 0.5203,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 151,
+            "object_type": "chair",
+            "start_frame": 1071,
+            "end_frame": 1092,
+            "frame_number": 1092,
+            "start_time": "00:00:35",
+            "end_time": "00:00:36",
+            "duration_seconds": 0.701,
+            "confidence": 0.5953,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 159,
+            "object_type": "tie",
+            "start_frame": 1323,
+            "end_frame": 1329,
+            "frame_number": 1329,
+            "start_time": "00:00:44",
+            "end_time": "00:00:44",
+            "duration_seconds": 0.2,
+            "confidence": 0.5041,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 166,
+            "object_type": "tie",
+            "start_frame": 1425,
+            "end_frame": 1425,
+            "frame_number": 1425,
+            "start_time": "00:00:47",
+            "end_time": "00:00:47",
+            "duration_seconds": 0.0,
+            "confidence": 0.5214,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 152,
+            "object_type": "bird",
+            "start_frame": 1515,
+            "end_frame": 1533,
+            "frame_number": 1533,
+            "start_time": "00:00:50",
+            "end_time": "00:00:51",
+            "duration_seconds": 0.601,
+            "confidence": 0.3849,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 169,
+            "object_type": "tie",
+            "start_frame": 1545,
+            "end_frame": 1569,
+            "frame_number": 1569,
+            "start_time": "00:00:51",
+            "end_time": "00:00:52",
+            "duration_seconds": 0.801,
+            "confidence": 0.4746,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 171,
+            "object_type": "tie",
+            "start_frame": 1605,
+            "end_frame": 1617,
+            "frame_number": 1617,
+            "start_time": "00:00:53",
+            "end_time": "00:00:53",
+            "duration_seconds": 0.4,
+            "confidence": 0.3873,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        },
+        {
+            "object_id": 172,
+            "object_type": "tie",
+            "start_frame": 1674,
+            "end_frame": 1737,
+            "frame_number": 1737,
+            "start_time": "00:00:55",
+            "end_time": "00:00:57",
+            "duration_seconds": 2.102,
+            "confidence": 0.8407,
+            "model_name": "yolo11n.pt",
+            "created_at": "2026-09-25T13:56:28.459504"
+        }
+    ],
     "activity_events": [
         {
             "video_name": "video4.mp4",
@@ -37,7 +867,7 @@
             "confidence": 0.8299,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 56.608,
-            "created_at": "2026-09-25T09:26:18.030985"
+            "created_at": "2026-09-25T13:55:09.054266"
         },
         {
             "video_name": "video4.mp4",
@@ -53,7 +883,7 @@
             "confidence": 0.8845,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 58.691,
-            "created_at": "2026-09-25T09:26:18.422993"
+            "created_at": "2026-09-25T13:55:09.362863"
         },
         {
             "video_name": "video4.mp4",
@@ -69,7 +899,7 @@
             "confidence": 0.8514,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 52.317,
-            "created_at": "2026-09-25T09:26:19.119779"
+            "created_at": "2026-09-25T13:55:09.786008"
         },
         {
             "video_name": "video4.mp4",
@@ -85,7 +915,7 @@
             "confidence": 0.5542,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 19.935,
-            "created_at": "2026-09-25T09:26:19.494380"
+            "created_at": "2026-09-25T13:55:10.070595"
         },
         {
             "video_name": "video4.mp4",
@@ -101,7 +931,7 @@
             "confidence": 0.8478,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 16.505,
-            "created_at": "2026-09-25T09:26:19.692878"
+            "created_at": "2026-09-25T13:55:10.212121"
         },
         {
             "video_name": "video4.mp4",
@@ -117,7 +947,7 @@
             "confidence": 0.8641,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 10.635,
-            "created_at": "2026-09-25T09:26:19.891969"
+            "created_at": "2026-09-25T13:55:10.353685"
         },
         {
             "video_name": "video4.mp4",
@@ -133,7 +963,7 @@
             "confidence": 0.7676,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 15.812,
-            "created_at": "2026-09-25T09:26:20.105663"
+            "created_at": "2026-09-25T13:55:10.495215"
         },
         {
             "video_name": "video4.mp4",
@@ -149,7 +979,7 @@
             "confidence": 0.9377,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 1.336,
-            "created_at": "2026-09-25T09:26:28.963827"
+            "created_at": "2026-09-25T13:55:17.107180"
         },
         {
             "video_name": "video4.mp4",
@@ -165,7 +995,7 @@
             "confidence": 0.7581,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 42.905,
-            "created_at": "2026-09-25T09:26:53.155930"
+            "created_at": "2026-09-25T13:55:33.415800"
         },
         {
             "video_name": "video4.mp4",
@@ -181,7 +1011,7 @@
             "confidence": 0.9412,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 21.612,
-            "created_at": "2026-09-25T09:26:53.347916"
+            "created_at": "2026-09-25T13:55:33.560854"
         },
         {
             "video_name": "video4.mp4",
@@ -197,7 +1027,7 @@
             "confidence": 0.9071,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 151.091,
-            "created_at": "2026-09-25T09:27:03.093575"
+            "created_at": "2026-09-25T13:55:40.715672"
         },
         {
             "video_name": "video4.mp4",
@@ -213,7 +1043,7 @@
             "confidence": 0.7845,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 0.0,
-            "created_at": "2026-09-25T09:27:03.679627"
+            "created_at": "2026-09-25T13:55:41.146806"
         },
         {
             "video_name": "video4.mp4",
@@ -229,7 +1059,7 @@
             "confidence": 0.77,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 35.831,
-            "created_at": "2026-09-25T09:27:04.054936"
+            "created_at": "2026-09-25T13:55:41.432383"
         },
         {
             "video_name": "video4.mp4",
@@ -245,7 +1075,7 @@
             "confidence": 0.8885,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 5.412,
-            "created_at": "2026-09-25T09:27:04.244499"
+            "created_at": "2026-09-25T13:55:41.569443"
         },
         {
             "video_name": "video4.mp4",
@@ -261,7 +1091,7 @@
             "confidence": 0.8443,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 57.349,
-            "created_at": "2026-09-25T09:27:04.830687"
+            "created_at": "2026-09-25T13:55:42.023567"
         },
         {
             "video_name": "video4.mp4",
@@ -277,7 +1107,7 @@
             "confidence": 0.5434,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 10.571,
-            "created_at": "2026-09-25T09:27:05.016246"
+            "created_at": "2026-09-25T13:55:42.162618"
         },
         {
             "video_name": "video4.mp4",
@@ -293,7 +1123,7 @@
             "confidence": 0.7263,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 0.0,
-            "created_at": "2026-09-25T09:27:05.016246"
+            "created_at": "2026-09-25T13:55:42.162618"
         },
         {
             "video_name": "video4.mp4",
@@ -309,7 +1139,7 @@
             "confidence": 0.3667,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 0.0,
-            "created_at": "2026-09-25T09:27:05.206859"
+            "created_at": "2026-09-25T13:55:42.297158"
         },
         {
             "video_name": "video4.mp4",
@@ -325,7 +1155,7 @@
             "confidence": 0.732,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 21.155,
-            "created_at": "2026-09-25T09:27:05.398919"
+            "created_at": "2026-09-25T13:55:42.436686"
         },
         {
             "video_name": "video4.mp4",
@@ -341,7 +1171,7 @@
             "confidence": 0.8313,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 138.947,
-            "created_at": "2026-09-25T09:27:06.371604"
+            "created_at": "2026-09-25T13:55:43.169948"
         },
         {
             "video_name": "video4.mp4",
@@ -357,7 +1187,7 @@
             "confidence": 0.7486,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 18.815,
-            "created_at": "2026-09-25T09:27:06.371604"
+            "created_at": "2026-09-25T13:55:43.169948"
         },
         {
             "video_name": "video4.mp4",
@@ -373,7 +1203,7 @@
             "confidence": 0.4898,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 0.341,
-            "created_at": "2026-09-25T09:27:06.567076"
+            "created_at": "2026-09-25T13:55:43.319480"
         },
         {
             "video_name": "video4.mp4",
@@ -389,7 +1219,7 @@
             "confidence": 0.5325,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 64.861,
-            "created_at": "2026-09-25T09:27:06.760561"
+            "created_at": "2026-09-25T13:55:43.465539"
         },
         {
             "video_name": "video4.mp4",
@@ -405,7 +1235,7 @@
             "confidence": 0.8659,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 25.964,
-            "created_at": "2026-09-25T09:27:07.731234"
+            "created_at": "2026-09-25T13:55:44.161277"
         },
         {
             "video_name": "video4.mp4",
@@ -421,7 +1251,7 @@
             "confidence": 0.8422,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 82.688,
-            "created_at": "2026-09-25T09:27:08.512753"
+            "created_at": "2026-09-25T13:55:44.761447"
         },
         {
             "video_name": "video4.mp4",
@@ -437,7 +1267,7 @@
             "confidence": 0.944,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 128.986,
-            "created_at": "2026-09-25T09:27:15.354494"
+            "created_at": "2026-09-25T13:55:49.821618"
         },
         {
             "video_name": "video4.mp4",
@@ -453,7 +1283,7 @@
             "confidence": 0.7246,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 60.406,
-            "created_at": "2026-09-25T09:27:15.745786"
+            "created_at": "2026-09-25T13:55:50.107204"
         },
         {
             "video_name": "video4.mp4",
@@ -469,7 +1299,7 @@
             "confidence": 0.5023,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 10.084,
-            "created_at": "2026-09-25T09:27:29.830155"
+            "created_at": "2026-09-25T13:56:00.582006"
         },
         {
             "video_name": "video4.mp4",
@@ -485,7 +1315,7 @@
             "confidence": 0.8133,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 25.203,
-            "created_at": "2026-09-25T09:27:30.202235"
+            "created_at": "2026-09-25T13:56:00.865593"
         },
         {
             "video_name": "video4.mp4",
@@ -501,7 +1331,7 @@
             "confidence": 0.8161,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 213.315,
-            "created_at": "2026-09-25T09:27:41.030018"
+            "created_at": "2026-09-25T13:56:08.638465"
         },
         {
             "video_name": "video4.mp4",
@@ -517,7 +1347,7 @@
             "confidence": 0.8979,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 25.671,
-            "created_at": "2026-09-25T09:27:41.241521"
+            "created_at": "2026-09-25T13:56:08.780517"
         },
         {
             "video_name": "video4.mp4",
@@ -533,7 +1363,7 @@
             "confidence": 0.8972,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 10.508,
-            "created_at": "2026-09-25T09:27:41.623759"
+            "created_at": "2026-09-25T13:56:09.066091"
         },
         {
             "video_name": "video4.mp4",
@@ -549,7 +1379,7 @@
             "confidence": 0.8125,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 36.179,
-            "created_at": "2026-09-25T09:27:42.000370"
+            "created_at": "2026-09-25T13:56:09.341917"
         },
         {
             "video_name": "video4.mp4",
@@ -565,7 +1395,7 @@
             "confidence": 0.8114,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 5.976,
-            "created_at": "2026-09-25T09:27:42.386784"
+            "created_at": "2026-09-25T13:56:09.626494"
         },
         {
             "video_name": "video4.mp4",
@@ -581,7 +1411,7 @@
             "confidence": 0.8086,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 27.809,
-            "created_at": "2026-09-25T09:27:42.588305"
+            "created_at": "2026-09-25T13:56:09.771566"
         },
         {
             "video_name": "video4.mp4",
@@ -597,7 +1427,7 @@
             "confidence": 0.7748,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 4.536,
-            "created_at": "2026-09-25T09:27:42.777369"
+            "created_at": "2026-09-25T13:56:09.909095"
         },
         {
             "video_name": "video4.mp4",
@@ -613,7 +1443,7 @@
             "confidence": 0.8658,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 20.074,
-            "created_at": "2026-09-25T09:27:42.966982"
+            "created_at": "2026-09-25T13:56:10.061638"
         },
         {
             "video_name": "video4.mp4",
@@ -629,7 +1459,7 @@
             "confidence": 0.9399,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 122.032,
-            "created_at": "2026-09-25T09:27:51.742580"
+            "created_at": "2026-09-25T13:56:16.404200"
         },
         {
             "video_name": "video4.mp4",
@@ -645,7 +1475,7 @@
             "confidence": 0.8281,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 28.081,
-            "created_at": "2026-09-25T09:27:51.982707"
+            "created_at": "2026-09-25T13:56:16.540726"
         },
         {
             "video_name": "video4.mp4",
@@ -661,7 +1491,7 @@
             "confidence": 0.8791,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 30.883,
-            "created_at": "2026-09-25T09:27:56.262948"
+            "created_at": "2026-09-25T13:56:19.943670"
         },
         {
             "video_name": "video4.mp4",
@@ -677,7 +1507,7 @@
             "confidence": 0.9336,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 90.0,
-            "created_at": "2026-09-25T09:27:56.665179"
+            "created_at": "2026-09-25T13:56:20.350331"
         },
         {
             "video_name": "video4.mp4",
@@ -693,7 +1523,7 @@
             "confidence": 0.9349,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 21.482,
-            "created_at": "2026-09-25T09:28:03.014655"
+            "created_at": "2026-09-25T13:56:25.112939"
         },
         {
             "video_name": "video4.mp4",
@@ -709,7 +1539,7 @@
             "confidence": 0.9395,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 91.682,
-            "created_at": "2026-09-25T09:28:03.416472"
+            "created_at": "2026-09-25T13:56:25.406534"
         },
         {
             "video_name": "video4.mp4",
@@ -725,7 +1555,7 @@
             "confidence": 0.9445,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 10.967,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -741,7 +1571,7 @@
             "confidence": 0.7789,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 104.199,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -757,7 +1587,7 @@
             "confidence": 0.7134,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 10.627,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -773,7 +1603,7 @@
             "confidence": 0.8015,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 13.007,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -789,7 +1619,7 @@
             "confidence": 0.8973,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 212.867,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -805,7 +1635,7 @@
             "confidence": 0.8932,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 246.713,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -821,7 +1651,7 @@
             "confidence": 0.832,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 189.628,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -837,7 +1667,7 @@
             "confidence": 0.8255,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 75.909,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -853,7 +1683,7 @@
             "confidence": 0.4848,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 13.178,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -869,7 +1699,7 @@
             "confidence": 0.8322,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 198.364,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -885,7 +1715,7 @@
             "confidence": 0.3666,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 40.707,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -901,7 +1731,7 @@
             "confidence": 0.6504,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 0.0,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -917,7 +1747,7 @@
             "confidence": 0.548,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 123.552,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -933,7 +1763,7 @@
             "confidence": 0.6673,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 0.0,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         },
         {
             "video_name": "video4.mp4",
@@ -949,192 +1779,12 @@
             "confidence": 0.9171,
             "model_name": "yolo11n-pose.pt",
             "total_movement_pixels": 16.054,
-            "created_at": "2026-09-25T09:28:07.795866"
+            "created_at": "2026-09-25T13:56:28.459504"
         }
     ],
-    "object_events": [
-        {
-            "video_name": "video4.mp4",
-            "object_id": 86,
-            "object_type": "clock",
-            "start_frame": 123,
-            "end_frame": 135,
-            "frame_number": 135,
-            "start_time": "00:00:04",
-            "end_time": "00:00:04",
-            "duration_seconds": 0.4,
-            "confidence": 0.4317,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 93,
-            "object_type": "clock",
-            "start_frame": 156,
-            "end_frame": 183,
-            "frame_number": 183,
-            "start_time": "00:00:05",
-            "end_time": "00:00:06",
-            "duration_seconds": 0.901,
-            "confidence": 0.5122,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 108,
-            "object_type": "tie",
-            "start_frame": 576,
-            "end_frame": 582,
-            "frame_number": 582,
-            "start_time": "00:00:19",
-            "end_time": "00:00:19",
-            "duration_seconds": 0.2,
-            "confidence": 0.5171,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 144,
-            "object_type": "surfboard",
-            "start_frame": 855,
-            "end_frame": 888,
-            "frame_number": 888,
-            "start_time": "00:00:28",
-            "end_time": "00:00:29",
-            "duration_seconds": 1.101,
-            "confidence": 0.4327,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 145,
-            "object_type": "surfboard",
-            "start_frame": 858,
-            "end_frame": 873,
-            "frame_number": 873,
-            "start_time": "00:00:28",
-            "end_time": "00:00:29",
-            "duration_seconds": 0.501,
-            "confidence": 0.4868,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 146,
-            "object_type": "snowboard",
-            "start_frame": 876,
-            "end_frame": 903,
-            "frame_number": 903,
-            "start_time": "00:00:29",
-            "end_time": "00:00:30",
-            "duration_seconds": 0.901,
-            "confidence": 0.5203,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 151,
-            "object_type": "chair",
-            "start_frame": 1071,
-            "end_frame": 1092,
-            "frame_number": 1092,
-            "start_time": "00:00:35",
-            "end_time": "00:00:36",
-            "duration_seconds": 0.701,
-            "confidence": 0.5953,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 159,
-            "object_type": "tie",
-            "start_frame": 1323,
-            "end_frame": 1329,
-            "frame_number": 1329,
-            "start_time": "00:00:44",
-            "end_time": "00:00:44",
-            "duration_seconds": 0.2,
-            "confidence": 0.5041,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 166,
-            "object_type": "tie",
-            "start_frame": 1425,
-            "end_frame": 1425,
-            "frame_number": 1425,
-            "start_time": "00:00:47",
-            "end_time": "00:00:47",
-            "duration_seconds": 0.0,
-            "confidence": 0.5214,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 152,
-            "object_type": "bird",
-            "start_frame": 1515,
-            "end_frame": 1533,
-            "frame_number": 1533,
-            "start_time": "00:00:50",
-            "end_time": "00:00:51",
-            "duration_seconds": 0.601,
-            "confidence": 0.3849,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 169,
-            "object_type": "tie",
-            "start_frame": 1545,
-            "end_frame": 1569,
-            "frame_number": 1569,
-            "start_time": "00:00:51",
-            "end_time": "00:00:52",
-            "duration_seconds": 0.801,
-            "confidence": 0.4746,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 171,
-            "object_type": "tie",
-            "start_frame": 1605,
-            "end_frame": 1617,
-            "frame_number": 1617,
-            "start_time": "00:00:53",
-            "end_time": "00:00:53",
-            "duration_seconds": 0.4,
-            "confidence": 0.3873,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        },
-        {
-            "video_name": "video4.mp4",
-            "object_id": 172,
-            "object_type": "tie",
-            "start_frame": 1674,
-            "end_frame": 1737,
-            "frame_number": 1737,
-            "start_time": "00:00:55",
-            "end_time": "00:00:57",
-            "duration_seconds": 2.102,
-            "confidence": 0.8407,
-            "model_name": "yolo11n.pt",
-            "created_at": "2026-09-25T09:28:07.795866"
-        }
-    ],
-    "created_at": "2026-09-25T09:28:07.796867"
+    "processing": {
+        "status": "completed",
+        "processor_version": "V2",
+        "created_at": "2026-09-25T13:56:28.460506"
+    }
 }

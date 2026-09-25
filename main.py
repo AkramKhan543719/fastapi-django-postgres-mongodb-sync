@@ -41,21 +41,20 @@ update_detection_events_schema()
 
 app = FastAPI(
 
-    title =
+    title=
         "DeepStream Detection API",
 
-    description = (
-        "FastAPI backend for AI detection "
-        "and V2 activity analysis."
-    ),
+    description=
+        "FastAPI backend for AI detection, "
+        "activity tracking and database synchronization.",
 
-    version =
+    version=
         "2.0.0",
 
-    docs_url =
+    docs_url=
         "/docs",
 
-    redoc_url =
+    redoc_url=
         "/redoc"
 
 )
@@ -69,19 +68,25 @@ app.add_middleware(
 
     CORSMiddleware,
 
-    allow_origins = ["*"],
+    allow_origins=[
+        "*"
+    ],
 
-    allow_credentials = True,
+    allow_credentials=True,
 
-    allow_methods = ["*"],
+    allow_methods=[
+        "*"
+    ],
 
-    allow_headers = ["*"]
+    allow_headers=[
+        "*"
+    ]
 
 )
 
 
 # =========================================================
-# API VERSION 1
+# V1 API
 # =========================================================
 
 app.include_router(
@@ -90,7 +95,7 @@ app.include_router(
 
 
 # =========================================================
-# API VERSION 2
+# V2 API
 # =========================================================
 
 app.include_router(
@@ -118,16 +123,6 @@ def root():
             "2.0.0",
 
         "architecture":
-            "FastAPI → PostgreSQL → Django → MongoDB",
-
-        "apis": {
-
-            "v1":
-                "/api/v1/detections",
-
-            "v2":
-                "/api/v2/activity-events"
-
-        }
+            "Video → V2 Processor → FastAPI → PostgreSQL → Django → MongoDB"
 
     }

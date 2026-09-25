@@ -1,12 +1,22 @@
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy import (
+    create_engine,
+    text
+)
+
+from sqlalchemy.orm import (
+    sessionmaker,
+    declarative_base
+)
 
 
 # =========================================================
 # DATABASE CONFIGURATION
 # =========================================================
 
-DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/deepstream_db"
+DATABASE_URL = (
+    "postgresql://postgres:postgres@localhost:5432/"
+    "deepstream_db"
+)
 
 
 # =========================================================
@@ -55,7 +65,7 @@ def get_db():
 
 
 # =========================================================
-# UPDATE EXISTING DETECTION TABLE
+# UPDATE DETECTION EVENTS SCHEMA
 # =========================================================
 
 def update_detection_events_schema():
@@ -65,7 +75,7 @@ def update_detection_events_schema():
         with engine.begin() as connection:
 
             # -------------------------------------------------
-            # Add sync_status if it does not exist
+            # sync_status
             # -------------------------------------------------
 
             connection.execute(
@@ -79,7 +89,7 @@ def update_detection_events_schema():
             )
 
             # -------------------------------------------------
-            # Add synced_at if it does not exist
+            # synced_at
             # -------------------------------------------------
 
             connection.execute(
@@ -93,7 +103,21 @@ def update_detection_events_schema():
             )
 
             # -------------------------------------------------
-            # Set existing NULL sync_status records to PENDING
+            # event_hash
+            # -------------------------------------------------
+
+            connection.execute(
+                text(
+                    """
+                    ALTER TABLE detection_events
+                    ADD COLUMN IF NOT EXISTS
+                    event_hash VARCHAR(64)
+                    """
+                )
+            )
+
+            # -------------------------------------------------
+            # Existing NULL sync status
             # -------------------------------------------------
 
             connection.execute(
@@ -107,7 +131,32 @@ def update_detection_events_schema():
             )
 
             # -------------------------------------------------
-            # Set NOT NULL constraint
+            # Existing NULL event hashes
+            #
+            # IMPORTANT:
+            # Existing old records are given a unique
+            # temporary hash.
+            # -------------------------------------------------
+
+            connection.execute(
+                text(
+                    """
+                    UPDATE detection_events
+                    SET event_hash =
+                        md5(
+                            COALESCE(id::text, '')
+                            || '|'
+                            || COALESCE(video_name, '')
+                            || '|'
+                            || COALESCE(event_type, '')
+                        )
+                    WHERE event_hash IS NULL
+                    """
+                )
+            )
+
+            # -------------------------------------------------
+            # NOT NULL sync_status
             # -------------------------------------------------
 
             connection.execute(
@@ -121,7 +170,7 @@ def update_detection_events_schema():
             )
 
             # -------------------------------------------------
-            # Set default value
+            # DEFAULT sync_status
             # -------------------------------------------------
 
             connection.execute(
@@ -135,7 +184,35 @@ def update_detection_events_schema():
             )
 
             # -------------------------------------------------
-            # Create index for synchronization queries
+            # NOT NULL event_hash
+            # -------------------------------------------------
+
+            connection.execute(
+                text(
+                    """
+                    ALTER TABLE detection_events
+                    ALTER COLUMN event_hash
+                    SET NOT NULL
+                    """
+                )
+            )
+
+            # -------------------------------------------------
+            # UNIQUE event_hash
+            # -------------------------------------------------
+
+            connection.execute(
+                text(
+                    """
+                    CREATE UNIQUE INDEX IF NOT EXISTS
+                    ux_detection_events_event_hash
+                    ON detection_events(event_hash)
+                    """
+                )
+            )
+
+            # -------------------------------------------------
+            # sync_status index
             # -------------------------------------------------
 
             connection.execute(
@@ -149,17 +226,16 @@ def update_detection_events_schema():
             )
 
         print(
-            "Detection events synchronization schema "
-            "updated successfully!"
+            "Detection events schema updated successfully!"
         )
 
-    except Exception as e:
+    except Exception as error:
 
         print(
             "Failed to update detection events schema:"
         )
 
-        print(e)
+        print(error)
 
 
 # =========================================================
@@ -184,10 +260,10 @@ try:
             result.fetchone()
         )
 
-except Exception as e:
+except Exception as error:
 
     print(
         "Database connection failed:"
     )
 
-    print(e)
+    print(error)

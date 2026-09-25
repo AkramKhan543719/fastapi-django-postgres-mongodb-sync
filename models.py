@@ -42,7 +42,8 @@ class DetectionEvent(Base):
 
     event_type = Column(
         String(100),
-        nullable=False
+        nullable=False,
+        index=True
     )
 
     # =========================================================
@@ -57,7 +58,8 @@ class DetectionEvent(Base):
 
     confidence = Column(
         Numeric(5, 4),
-        nullable=False
+        nullable=False,
+        default=0.0
     )
 
     # =========================================================
@@ -94,7 +96,7 @@ class DetectionEvent(Base):
     )
 
     # =========================================================
-    # MONGODB SYNCHRONIZATION STATUS
+    # MONGODB SYNCHRONIZATION
     # =========================================================
 
     sync_status = Column(
@@ -103,10 +105,6 @@ class DetectionEvent(Base):
         nullable=False,
         index=True
     )
-
-    # =========================================================
-    # SUCCESSFUL MONGODB SYNC TIME
-    # =========================================================
 
     synced_at = Column(
         DateTime,

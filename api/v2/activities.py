@@ -4,21 +4,12 @@ import json
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from fastapi import (
-    APIRouter,
-    Depends,
-    HTTPException,
-    status
-)
-
+from fastapi import APIRouter, Depends, status
 from pydantic import BaseModel, Field
-
 from sqlalchemy.orm import Session
 
 from database import get_db
-
 from models import DetectionEvent
-
 from logger_config import logger
 
 
@@ -27,29 +18,25 @@ from logger_config import logger
 # ============================================================
 
 router = APIRouter(
-
     prefix="/api/v2/activity-events",
-
-    tags=[
-        "V2 Activity Events"
-    ]
-
+    tags=["V2 Activity Events"]
 )
 
 
 # ============================================================
-# V2 ACTIVITY EVENT SCHEMA
+# ACTIVITY EVENT MODEL
+# Matches the actual V2 JSON
 # ============================================================
 
-class V2ActivityEvent(BaseModel):
+class ActivityEvent(BaseModel):
 
     video_name: str
 
-    person_id: Optional[int] = None
+    person_id: int
 
     object_id: Optional[int] = None
 
-    object_type: str
+    object_type: str = "person"
 
     activity: str
 
@@ -59,106 +46,111 @@ class V2ActivityEvent(BaseModel):
 
     duration_seconds: float
 
-    start_frame: int
+    start_frame: Optional[int] = None
 
-    end_frame: int
+    end_frame: Optional[int] = None
 
     confidence: float = Field(
+        default=0.0,
         ge=0.0,
         le=1.0
     )
 
-    model_name: str
+    model_name: Optional[str] = None
 
     total_movement_pixels: float = 0.0
 
-    created_at: str
+    created_at: Optional[str] = None
 
 
 # ============================================================
-# V2 REQUEST
+# OBJECT EVENT MODEL
+# Matches the actual V2 JSON
+# ============================================================
+
+class ObjectEvent(BaseModel):
+
+    video_name: str
+
+    object_id: Optional[int] = None
+
+    object_type: str
+
+    start_frame: Optional[int] = None
+
+    end_frame: Optional[int] = None
+
+    frame_number: Optional[int] = None
+
+    start_time: Optional[str] = None
+
+    end_time: Optional[str] = None
+
+    duration_seconds: float = 0.0
+
+    confidence: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0
+    )
+
+    model_name: Optional[str] = None
+
+    created_at: Optional[str] = None
+
+
+# ============================================================
+# V2 REQUEST MODEL
 # ============================================================
 
 class V2Request(BaseModel):
 
     video_name: str
 
-    model_name: str
+    model_name: Optional[str] = None
 
-    object_model: str
+    object_model: Optional[str] = None
 
-    fps: float
+    fps: float = 0.0
 
-    total_frames: int
+    total_frames: int = 0
 
-    duration_seconds: float
+    duration_seconds: float = 0.0
 
-    summary: Dict[str, Any]
+    summary: Dict[str, Any] = {}
 
     activity_events: List[
-        V2ActivityEvent
-    ]
+        ActivityEvent
+    ] = []
 
     object_events: List[
-        Dict[str, Any]
-    ]
+        ObjectEvent
+    ] = []
 
-    created_at: str
+    created_at: Optional[str] = None
 
 
 # ============================================================
-# V2 RESPONSE
+# V2 RESPONSE MODEL
 # ============================================================
 
 class V2Response(BaseModel):
 
     message: str
 
+    video_name: str
+
+    activity_events_received: int
+
+    object_events_received: int
+
+    activity_events_inserted: int
+
+    object_events_inserted: int
+
+    skipped_duplicates: int
+
     event_ids: List[int]
-
-    activity_events: int
-
-    object_events: int
-
-    new_events: int
-
-    duplicate_events: int
-
-
-# ============================================================
-# EVENT HASH CREATION
-# ============================================================
-
-def create_event_hash(
-    video_name: str,
-    event_type: str,
-    event_data: Dict[str, Any]
-) -> str:
-
-    """
-    Creates a deterministic SHA-256 fingerprint
-    for one detection/activity event.
-
-    The same video + event type + event data
-    always produces the same hash.
-    """
-
-    raw = (
-        video_name
-        + "|"
-        + event_type
-        + "|"
-        + json.dumps(
-            event_data,
-            sort_keys=True,
-            separators=(",", ":"),
-            default=str
-        )
-    )
-
-    return hashlib.sha256(
-        raw.encode("utf-8")
-    ).hexdigest()
 
 
 # ============================================================
@@ -169,21 +161,135 @@ def create_event_hash(
 def v2_test():
 
     return {
-
         "message":
             "Detection API v2 is working",
 
         "version":
             "v2",
 
-        "duplicate_protection":
-            "enabled"
-
+        "format":
+            "activity_events + object_events"
     }
 
 
 # ============================================================
-# CREATE V2 EVENTS
+# CREATE ACTIVITY EVENT HASH
+# ============================================================
+
+def create_activity_hash(
+    event: ActivityEvent
+):
+
+    hash_data = {
+
+        "video_name":
+            event.video_name,
+
+        "person_id":
+            event.person_id,
+
+        "object_id":
+            event.object_id,
+
+        "object_type":
+            event.object_type,
+
+        "activity":
+            event.activity,
+
+        "start_time":
+            event.start_time,
+
+        "end_time":
+            event.end_time,
+
+        "duration_seconds":
+            event.duration_seconds,
+
+        "start_frame":
+            event.start_frame,
+
+        "end_frame":
+            event.end_frame,
+
+        "confidence":
+            event.confidence,
+
+        "model_name":
+            event.model_name,
+
+        "total_movement_pixels":
+            event.total_movement_pixels
+    }
+
+    raw_data = json.dumps(
+        hash_data,
+        sort_keys=True,
+        separators=(",", ":")
+    )
+
+    return hashlib.sha256(
+        raw_data.encode("utf-8")
+    ).hexdigest()
+
+
+# ============================================================
+# CREATE OBJECT EVENT HASH
+# ============================================================
+
+def create_object_hash(
+    event: ObjectEvent
+):
+
+    hash_data = {
+
+        "video_name":
+            event.video_name,
+
+        "object_id":
+            event.object_id,
+
+        "object_type":
+            event.object_type,
+
+        "start_frame":
+            event.start_frame,
+
+        "end_frame":
+            event.end_frame,
+
+        "frame_number":
+            event.frame_number,
+
+        "start_time":
+            event.start_time,
+
+        "end_time":
+            event.end_time,
+
+        "duration_seconds":
+            event.duration_seconds,
+
+        "confidence":
+            event.confidence,
+
+        "model_name":
+            event.model_name
+    }
+
+    raw_data = json.dumps(
+        hash_data,
+        sort_keys=True,
+        separators=(",", ":")
+    )
+
+    return hashlib.sha256(
+        raw_data.encode("utf-8")
+    ).hexdigest()
+
+
+# ============================================================
+# POST V2 EVENTS
 # ============================================================
 
 @router.post(
@@ -202,19 +308,21 @@ def create_v2_events(
 ):
 
     logger.info(
-
-        "V2 activity data received | "
-        "Video: %s",
-
+        "V2 data received | Video: %s",
         payload.video_name
-
     )
 
     event_ids = []
 
-    new_events = 0
+    activity_events_received = 0
 
-    duplicate_events = 0
+    object_events_received = 0
+
+    activity_events_inserted = 0
+
+    object_events_inserted = 0
+
+    skipped_duplicates = 0
 
     try:
 
@@ -224,97 +332,128 @@ def create_v2_events(
 
         for event in payload.activity_events:
 
-            # ------------------------------------------------
-            # Convert Pydantic model to dictionary
-            # ------------------------------------------------
+            activity_events_received += 1
 
-            complete_json = event.model_dump()
-
-            # ------------------------------------------------
-            # Create deterministic hash
-            # ------------------------------------------------
-
-            event_hash = create_event_hash(
-
-                payload.video_name,
-
-                "activity_event",
-
-                complete_json
-
+            event_hash = create_activity_hash(
+                event
             )
 
             # ------------------------------------------------
-            # Check whether event already exists
+            # DUPLICATE CHECK
             # ------------------------------------------------
 
-            existing = (
-
+            existing_event = (
                 db.query(
                     DetectionEvent
                 )
-
                 .filter(
                     DetectionEvent.event_hash
                     == event_hash
                 )
-
                 .first()
-
             )
 
-            if existing:
+            if existing_event:
 
-                logger.info(
-
-                    "Duplicate activity event skipped | "
-                    "Video: %s | "
-                    "Existing ID: %s",
-
-                    payload.video_name,
-
-                    existing.id
-
-                )
+                skipped_duplicates += 1
 
                 event_ids.append(
-                    existing.id
+                    existing_event.id
                 )
 
-                duplicate_events += 1
+                logger.info(
+                    "Duplicate activity skipped | "
+                    "Video=%s | "
+                    "Person=%s | "
+                    "Activity=%s",
+                    event.video_name,
+                    event.person_id,
+                    event.activity
+                )
 
                 continue
 
             # ------------------------------------------------
-            # Create new database record
+            # COMPLETE JSON
+            # ------------------------------------------------
+
+            complete_json = {
+
+                "video_name":
+                    event.video_name,
+
+                "person_id":
+                    event.person_id,
+
+                "object_id":
+                    event.object_id,
+
+                "object_type":
+                    event.object_type,
+
+                "activity":
+                    event.activity,
+
+                "start_time":
+                    event.start_time,
+
+                "end_time":
+                    event.end_time,
+
+                "duration_seconds":
+                    event.duration_seconds,
+
+                "start_frame":
+                    event.start_frame,
+
+                "end_frame":
+                    event.end_frame,
+
+                "confidence":
+                    event.confidence,
+
+                "model_name":
+                    event.model_name,
+
+                "total_movement_pixels":
+                    event.total_movement_pixels,
+
+                "created_at":
+                    event.created_at
+            }
+
+            # ------------------------------------------------
+            # DATABASE RECORD
             # ------------------------------------------------
 
             db_event = DetectionEvent(
 
-                video_name=
-                    payload.video_name,
+                video_name =
+                    event.video_name,
 
-                event_type=
+                event_type =
                     "activity_event",
 
-                class_name=
-                    event.object_type,
+                class_name =
+                    event.activity,
 
-                confidence=
+                confidence =
                     event.confidence,
 
-                timestamp=
+                timestamp =
                     datetime.utcnow(),
 
-                frame_number=
+                frame_number =
                     event.start_frame,
 
-                json_data=
+                json_data =
                     complete_json,
 
-                event_hash=
-                    event_hash
+                event_hash =
+                    event_hash,
 
+                sync_status =
+                    "PENDING"
             )
 
             db.add(
@@ -327,182 +466,130 @@ def create_v2_events(
                 db_event.id
             )
 
-            new_events += 1
+            activity_events_inserted += 1
 
         # ====================================================
         # OBJECT EVENTS
         # ====================================================
 
-        for object_event in payload.object_events:
+        for event in payload.object_events:
 
-            # ------------------------------------------------
-            # Convert object event to dictionary
-            # ------------------------------------------------
+            object_events_received += 1
 
-            complete_json = dict(
-                object_event
+            event_hash = create_object_hash(
+                event
             )
 
             # ------------------------------------------------
-            # Extract object information
+            # DUPLICATE CHECK
             # ------------------------------------------------
 
-            object_type = (
-
-                complete_json.get(
-                    "object_type",
-
-                    complete_json.get(
-                        "class_name",
-
-                        "object"
-                    )
-
-                )
-
-            )
-
-            # ------------------------------------------------
-            # Extract confidence
-            # ------------------------------------------------
-
-            try:
-
-                confidence = float(
-
-                    complete_json.get(
-                        "confidence",
-                        0.0
-                    )
-
-                )
-
-            except (
-                TypeError,
-                ValueError
-            ):
-
-                confidence = 0.0
-
-            # ------------------------------------------------
-            # Validate confidence
-            # ------------------------------------------------
-
-            if confidence < 0.0:
-
-                confidence = 0.0
-
-            if confidence > 1.0:
-
-                confidence = 1.0
-
-            # ------------------------------------------------
-            # Extract frame number
-            # ------------------------------------------------
-
-            try:
-
-                frame_number = int(
-
-                    complete_json.get(
-                        "frame_number",
-                        0
-                    )
-
-                )
-
-            except (
-                TypeError,
-                ValueError
-            ):
-
-                frame_number = 0
-
-            # ------------------------------------------------
-            # Create deterministic hash
-            # ------------------------------------------------
-
-            event_hash = create_event_hash(
-
-                payload.video_name,
-
-                "object_detection_v2",
-
-                complete_json
-
-            )
-
-            # ------------------------------------------------
-            # Check duplicate
-            # ------------------------------------------------
-
-            existing = (
-
+            existing_event = (
                 db.query(
                     DetectionEvent
                 )
-
                 .filter(
                     DetectionEvent.event_hash
                     == event_hash
                 )
-
                 .first()
-
             )
 
-            if existing:
+            if existing_event:
 
-                logger.info(
-
-                    "Duplicate object event skipped | "
-                    "Video: %s | "
-                    "Existing ID: %s",
-
-                    payload.video_name,
-
-                    existing.id
-
-                )
+                skipped_duplicates += 1
 
                 event_ids.append(
-                    existing.id
+                    existing_event.id
                 )
 
-                duplicate_events += 1
+                logger.info(
+                    "Duplicate object skipped | "
+                    "Video=%s | "
+                    "Object=%s | "
+                    "Type=%s",
+                    event.video_name,
+                    event.object_id,
+                    event.object_type
+                )
 
                 continue
 
             # ------------------------------------------------
-            # Create database record
+            # COMPLETE JSON
+            # ------------------------------------------------
+
+            complete_json = {
+
+                "video_name":
+                    event.video_name,
+
+                "object_id":
+                    event.object_id,
+
+                "object_type":
+                    event.object_type,
+
+                "start_frame":
+                    event.start_frame,
+
+                "end_frame":
+                    event.end_frame,
+
+                "frame_number":
+                    event.frame_number,
+
+                "start_time":
+                    event.start_time,
+
+                "end_time":
+                    event.end_time,
+
+                "duration_seconds":
+                    event.duration_seconds,
+
+                "confidence":
+                    event.confidence,
+
+                "model_name":
+                    event.model_name,
+
+                "created_at":
+                    event.created_at
+            }
+
+            # ------------------------------------------------
+            # DATABASE RECORD
             # ------------------------------------------------
 
             db_event = DetectionEvent(
 
-                video_name=
-                    payload.video_name,
+                video_name =
+                    event.video_name,
 
-                event_type=
+                event_type =
                     "object_detection_v2",
 
-                class_name=
-                    object_type,
+                class_name =
+                    event.object_type,
 
-                confidence=
-                    confidence,
+                confidence =
+                    event.confidence,
 
-                timestamp=
+                timestamp =
                     datetime.utcnow(),
 
-                frame_number=
-                    frame_number,
+                frame_number =
+                    event.frame_number,
 
-                json_data=
+                json_data =
                     complete_json,
 
-                event_hash=
-                    event_hash
+                event_hash =
+                    event_hash,
 
+                sync_status =
+                    "PENDING"
             )
 
             db.add(
@@ -515,7 +602,7 @@ def create_v2_events(
                 db_event.id
             )
 
-            new_events += 1
+            object_events_inserted += 1
 
         # ====================================================
         # COMMIT
@@ -524,67 +611,55 @@ def create_v2_events(
         db.commit()
 
         logger.info(
-
-            "V2 data processed | "
-            "Video: %s | "
-            "New: %s | "
-            "Duplicates: %s",
-
+            "V2 processing completed | "
+            "Video=%s | "
+            "Activities inserted=%s | "
+            "Objects inserted=%s | "
+            "Duplicates=%s",
             payload.video_name,
-
-            new_events,
-
-            duplicate_events
-
+            activity_events_inserted,
+            object_events_inserted,
+            skipped_duplicates
         )
 
         # ====================================================
         # RESPONSE
         # ====================================================
 
-        return {
+        return V2Response(
 
-            "message":
-                "V2 activity data processed successfully",
+            message =
+                "V2 activity and object data processed successfully",
 
-            "event_ids":
-                event_ids,
+            video_name =
+                payload.video_name,
 
-            "activity_events":
-                len(
-                    payload.activity_events
-                ),
+            activity_events_received =
+                activity_events_received,
 
-            "object_events":
-                len(
-                    payload.object_events
-                ),
+            object_events_received =
+                object_events_received,
 
-            "new_events":
-                new_events,
+            activity_events_inserted =
+                activity_events_inserted,
 
-            "duplicate_events":
-                duplicate_events
+            object_events_inserted =
+                object_events_inserted,
 
-        }
+            skipped_duplicates =
+                skipped_duplicates,
+
+            event_ids =
+                event_ids
+        )
 
     except Exception as error:
 
         db.rollback()
 
         logger.exception(
-
-            "V2 database insertion failed"
-
+            "V2 processing failed | Video=%s",
+            payload.video_name
         )
 
-        raise HTTPException(
-
-            status_code=
-                status.HTTP_500_INTERNAL_SERVER_ERROR,
-
-            detail=str(
-                error
-            )
-
-        )
+        raise error
